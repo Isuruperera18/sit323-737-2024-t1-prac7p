@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sit737-2025-prac7p-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: sit737-2025-prac7p
+  template:
+    metadata:
+      labels:
+        app: sit737-2025-prac7p
+    spec:
+      containers:
+      - name: sit737-2025-prac7p
+        image: s223693522/sit737-2025-prac7p:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
+        env:
+          - name: MONGO_URI
+            value: mongodb://admin:adminpass@mongodb-service.default.svc.cluster.local:27017
